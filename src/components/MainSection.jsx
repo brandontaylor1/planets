@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState }  from 'react'
 import { PlanetsContext } from '../../context/PlanetsContext.jsx'
+import { motion } from 'framer-motion'
 
+import TitleModal from './TitleModal.jsx'
 import Button from '../components/Button.jsx'
 
 const MainSection = () => {
@@ -15,64 +17,92 @@ const MainSection = () => {
 
     const planetGeologyImage = selectedPlanet?.images?.geology ||'';
     const planetGeologyContent = selectedPlanet?.geology?.content || '';
-
+    const [ isGeologyView, setIsGeologyView ] = useState(false)
 
     const [ currentImage, setCurrentImage ] = useState(planetOverviewImage)
+    const [ backgroundImage, setBackgroundImage ] = useState(planetOverviewImage)
     const [ currentContent, setCurrentContent ] = useState(planetOverviewContent)
+    const [ activeButton, setActiveButton ] = useState(false)
 
     useEffect(() => {
-      setCurrentImage(planetOverviewImage)
-      setCurrentContent(planetOverviewContent)
+      if(selectedPlanet) {
+        setCurrentImage(planetOverviewImage)
+        setCurrentContent(planetOverviewContent)
+        setIsGeologyView(false)
+        setActiveButton('01')
+      }
     }, [selectedPlanet])
 
-  const handleButtonClick = (image, content) => {
+  const handleButtonClick = (image, content, buttonNumber) => {
     setCurrentImage(image)
     setCurrentContent(content)
+    setIsGeologyView(false)
+    setActiveButton(buttonNumber)
+  }
+
+  const handleGeologyClick = (backgroundImage, image, content, buttonNumber) => {
+    setBackgroundImage(backgroundImage)
+    setCurrentImage(image)
+    setCurrentContent(content)
+    setIsGeologyView(true)
+    setActiveButton(buttonNumber)
   }
 
   if(!selectedPlanet) {
     return (
-      <div className='@ container flex flex-col w-3xl h-[80vh] items-center justify-center'>
-        <h1 className='h1 text-white text-center mb-6'>WELCOME TO THE PLANETS</h1>
-        <p className='h2 text-white/50 text-center'>This site is designed for you to get to know the planets in our solar system. Please select a planet from above. Have fun!</p>
-
-      </div>
-    
+      <>
+      <TitleModal />
+      </>
     )
   }
   
   return (
-    <main className='@container flex flex-row items-center justify-center w-full h-[80vh] text-[var(--color-primary-white)]'>
-      <div className='@container w-[60%] h-[100%] flex items-center justify-center'>
-        {selectedPlanet && <img src={currentImage} alt={selectedPlanet.name} className='w-2xl h-2xl object-cover' />}
-      </div>
+    <main className='@container w-[100%] h-[75vh] flex flex-row items-center justify-center text-[var(--color-primary-white)]'>
+      <motion.div
+        className='@container w-full h-full flex items-center justify-center'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{duration: 0.5}}>
+        
+        {isGeologyView ? 
+          ( <div className='flex flex-col items-center justify-center relative'>
+              <img src={backgroundImage} alt={selectedPlanet.name} className='w-2xl h-2xl object-cover'/>
+              <img src={currentImage} alt={selectedPlanet.name} className='w-l h-l absolute bottom-0 object-cover' />
+          </div>
+          ) : (
+            <img src={currentImage ? currentImage : null} alt={selectedPlanet.name} className='w-2xl h-2xl object-cover' />
+          )}
 
 
-      <div className="w-[40%] h-[100%] flex flex-col 
-      items-left justify-center gap-4 p-15">
+      <div className="w-[40vw] h-[100%] flex flex-col 
+      items-left justify-center gap-10 p-15">
         {selectedPlanet && 
         <h1 className='h1 uppercase'>
             {selectedPlanet.name} </h1>}
         <p className='body text-white/50'>{selectedPlanet && currentContent }</p>
-        <p className='body'>Source: {selectedPlanet && selectedPlanet.overview.source}</p>
+        <p className='body'><a href={selectedPlanet && selectedPlanet.overview.source} target='blank' rel='noopener noreferrer'>Source: Wikipedia</a></p>
         <div className="btn-container flex flex-col gap-4 w-[100%]">
             <Button 
             number='01'
-            title="Overview" 
-            onClick={() => handleButtonClick(planetOverviewImage, planetOverviewContent)}
+            title="Overview"
+            isActive= {activeButton === '01'} 
+            onClick={() => handleButtonClick(planetOverviewImage, planetOverviewContent, '01')}
             />
             <Button 
               number='02' 
               title="Internal Structure"
-              onClick={() => handleButtonClick(planetStructureImage, planetStructureContent)} 
+              isActive={activeButton === '02'}
+              onClick={() => handleButtonClick(planetStructureImage, planetStructureContent, '02')} 
               />
             <Button 
               number='03' 
               title="Surface Geology"
-              onClick={() => handleButtonClick(planetGeologyImage, planetGeologyContent)}
+              isActive={activeButton === '03'}
+              onClick={() => handleGeologyClick(planetOverviewImage, planetGeologyImage, planetGeologyContent, '03')}
               />
         </div>
       </div>
+      </motion.div>
     </main>
   )
 }

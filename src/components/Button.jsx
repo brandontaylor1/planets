@@ -1,35 +1,32 @@
 import React, { useContext } from 'react'
 import { PlanetsContext } from '../../context/PlanetsContext'
 
-const Button = ({ number, title, onClick }) => {
-
+const Button = ({ number, title, onClick, isActive }) => {
+  
     const { selectedPlanet } = useContext(PlanetsContext)
     const planetName = selectedPlanet?.name?.toLowerCase();
 
     const planetColors = {
-        mercury: 'hover:bg-[var(--color-mercury)]',
-        venus: 'hover:bg-[var(--color-venus)]',
-        earth: 'hover:bg-[var(--color-earth)]',
-        mars: 'hover:bg-[var(--color-mars)]',
-        jupiter: 'hover:bg-[var(--color-jupiter)]',
-        saturn: 'hover:bg-[var(--color-saturn)]',
-        uranus: 'hover:bg-[var(--color-uranus)]',
-        neptune: 'hover:bg-[var(--color-neptune)]',
+        mercury: 'bg-[var(--color-mercury)]',
+        venus: 'bg-[var(--color-venus)]',
+        earth: 'bg-[var(--color-earth)]',
+        mars: 'bg-[var(--color-mars)]',
+        jupiter: 'bg-[var(--color-jupiter)]',
+        saturn: 'bg-[var(--color-saturn)]',
+        uranus: 'bg-[var(--color-uranus)]',
+        neptune: 'bg-[var(--color-neptune)]',
       };
     
-    
-      const hoverClass = planetColors[planetName] || '';
-    
-      const buttonClass = `flex flex-row items-center h3 px-8 border-1 border-white/25 w-[100%] h-[48px] uppercase bg-transparent ${hoverClass}`;
-    
+      const planetColor = planetColors[planetName] || 'bg-[var(--color-primary-white)]';
 
+      const buttonClass = `flex flex-row items-center h3 px-8 border-1 border-white/25 w-[100%] h-[48px] uppercase hover:bg-white/50 ${isActive ? planetColor : 'transparent'} transition-all duration-300 ease-in-out`;
+
+  
   return (
     <button 
         className={buttonClass} 
         style={{cursor: 'pointer'}}
-        onClick={onClick}
-        >
-        
+        onClick={onClick}>
         <p className='text-white/50 pr-[20px]'>{number}</p>
         {title}
     </button>
