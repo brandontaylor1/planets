@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { PlanetsContext } from '../../context/PlanetsContext'
 
-const Button = ({ number, title }) => {
+const Button = ({ number, title, onClick }) => {
 
     const { selectedPlanet } = useContext(PlanetsContext)
     const planetName = selectedPlanet?.name?.toLowerCase();
@@ -26,8 +26,8 @@ const Button = ({ number, title }) => {
   return (
     <button 
         className={buttonClass} 
-        onClick={() => console.log('clicked')}
         style={{cursor: 'pointer'}}
+        onClick={onClick}
         >
         
         <p className='text-white/50 pr-[20px]'>{number}</p>
