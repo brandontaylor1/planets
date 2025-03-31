@@ -8,7 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -17,6 +19,7 @@
     "@mui/material": "^7.0.1",
     "@tailwindcss/vite": "^4.0.17",
     "framer-motion": "^12.6.2",
+    "gh-pages": "^6.3.0",
     "motion": "^12.6.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
