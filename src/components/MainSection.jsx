@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState }  from 'react'
 import { PlanetsContext } from '../../context/PlanetsContext.jsx'
-import { motion } from 'framer-motion'
+import { motion } from "motion/react"
 
 import TitleModal from './TitleModal.jsx'
 import Button from '../components/Button.jsx'
