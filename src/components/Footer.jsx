@@ -10,7 +10,6 @@ const Footer = () => {
 const { selectedPlanet } = useContext(PlanetsContext)
 
 const [ temp, setTemp ] = useState('')
-const [ isModalVisible, setIsModalVisible ] = useState(false)
 
 // Function to convert temperature from Celsius to Fahrenheit
 const convertToFahrenheit = (celsius) => {
