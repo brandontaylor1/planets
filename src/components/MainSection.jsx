@@ -58,7 +58,7 @@ const MainSection = () => {
   }
   
   return (
-    <main className='@container w-[100%] h-[70vh] flex flex-row items-center justify-center text-[var(--color-primary-white)]'>
+    <main className='@container w-[100%] min-h-[70vh] flex flex-row items-center justify-center text-[var(--color-primary-white)]'>
       <motion.div
         className='@container w-[100%] h-full flex items-center justify-center'
         initial={{ opacity: 0 }}

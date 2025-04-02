@@ -12,7 +12,7 @@ const App = () => {
 
 
   return (
-   <section className='@container flex flex-col items-center space-between w-screen h-screen bg-[var(--color-background-blue)] bg-[url("./assets/background-stars.svg")] bg-cover bg-no-repeat bg-center bg-blend-screen p-4'>
+   <section className='@container flex flex-col items-center space-between w-[100vw] h-[100vh] bg-[var(--color-background-blue)] bg-[url("./assets/background-stars.svg")] bg-cover bg-no-repeat bg-center bg-blend-screen p-4'>
     {selectedPlanet === null ? (<TitleModal />) : 
       (
         <>
