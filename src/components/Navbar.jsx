@@ -19,7 +19,7 @@ const planetColors = {
 const earth = planets.find((planet) => planet.name === "Earth")
    
   return (
-        <nav className='@container w-full h-[5vh] flex flex-row justify-between items-center px-4 text-[var(--color-primary-white)]'>
+        <nav className='@container w-full h-[10vh] flex flex-row justify-between items-center px-4 text-[var(--color-primary-white)]'>
             <h1 
                 className='h2 uppercase '
                 onClick={() => setSelectedPlanet(earth)}
@@ -44,10 +44,7 @@ const earth = planets.find((planet) => planet.name === "Earth")
                                 }}
 
                                 onMouseEnter={(e) => (e.target.style.borderTopColor = planetColor)}
-                                onMouseLeave={(e) => (e.target.style.borderTopColor = 'none')}
-
-                                
->
+                                onMouseLeave={(e) => (e.target.style.borderTopColor = 'none')}>
                                 {planet.name}
                             </li>
                         </div>

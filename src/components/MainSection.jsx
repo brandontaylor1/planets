@@ -58,24 +58,24 @@ const MainSection = () => {
   }
   
   return (
-    <main className='@container w-[100%] h-[75vh] flex flex-row items-center justify-center text-[var(--color-primary-white)]'>
+    <main className='@container w-[100%] h-[70vh] flex flex-row items-center justify-center text-[var(--color-primary-white)]'>
       <motion.div
-        className='@container w-full h-full flex items-center justify-center'
+        className='@container w-[100%] h-full flex items-center justify-center'
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{duration: 0.5}}>
         
         {isGeologyView ? 
           ( <div className='flex flex-col items-center justify-center relative'>
-              <img src={backgroundImage} alt={selectedPlanet.name} className='w-2xl h-2xl object-cover'/>
-              <img src={currentImage} alt={selectedPlanet.name} className='w-l h-l absolute bottom-0 object-cover' />
+              <img src={backgroundImage} alt={selectedPlanet.name} className='w-2xl h-2xl md:w-l md:h-l object-cover'/>
+              <img src={currentImage} alt={selectedPlanet.name} className='w-l h-l md:m md:m absolute bottom-0 object-cover' />
           </div>
           ) : (
             <img src={currentImage ? currentImage : null} alt={selectedPlanet.name} className='w-2xl h-2xl object-cover' />
           )}
 
 
-      <div className="w-[40vw] h-[100%] flex flex-col 
+      <div className="w-[40vw] h-[auto] flex flex-col 
       items-left justify-center gap-10 p-15">
         {selectedPlanet && 
         <h1 className='h1 uppercase'>
