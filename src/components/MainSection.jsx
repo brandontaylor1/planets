@@ -58,25 +58,26 @@ const MainSection = () => {
   }
   
   return (
-    <main className='@container w-[100%] min-h-[70vh] flex flex-row items-center justify-center text-[var(--color-primary-white)]'>
-      <motion.div
-        className='@container w-[100%] h-full flex items-center justify-center'
+  <main className='w-full min-h-[60vh] flex justify-center text-[var(--color-primary-white)] p-10'>
+    <motion.div
+        className='w-[75%] h-full flex flex-row items-center justify-end gap-4'
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{duration: 0.5}}>
-        
-        {isGeologyView ? 
-          ( <div className='flex flex-col items-center justify-center relative'>
-              <img src={backgroundImage} alt={selectedPlanet.name} className='w-2xl h-2xl md:w-l md:h-l object-cover'/>
-              <img src={currentImage} alt={selectedPlanet.name} className='w-l h-l md:m md:m absolute bottom-0 object-cover' />
-          </div>
-          ) : (
-            <img src={currentImage ? currentImage : null} alt={selectedPlanet.name} className='w-2xl h-2xl object-cover' />
-          )}
+      <div className='w-[60%] flex items-center ' >
+          {isGeologyView ? 
+            ( <div className='flex flex-col items-center justify-center relative'>
+                <img src={backgroundImage} alt={selectedPlanet.name} className='w-2xl h-2xl sm:max-w-full sm:h-auto object-cover'/>
+                <img src={currentImage} alt={selectedPlanet.name} className='w-l h-l sm:max-w-full sm:h-auto absolute bottom-0 object-cover' />
+            </div>
+            ) : (
+              <img src={currentImage ? currentImage : null} alt={selectedPlanet.name} className='w-2xl h-2xl  object-cover' />
+            )}
+        </div>
 
 
-      <div className="w-[40vw] h-[auto] flex flex-col 
-      items-left justify-center gap-10 p-15">
+      <div className="w-[50%] h-[auto] flex flex-col 
+      items-left justify-center gap-10 p-10">
         {selectedPlanet && 
         <h1 className='h1 uppercase'>
             {selectedPlanet.name} </h1>}

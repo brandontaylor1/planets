@@ -46,7 +46,7 @@ const planetColors = {
 
   
   return (
-    <footer className='w-full text-white h-[20vh]'>
+    <footer className='w-full text-white h-auto'>
         <div className="w-100%] h-[100%] flex flex-row items-center justify-center">
             <div className="w-[40%] h-[100%] flex flex-col 
             items-left justify-center gap-4 p-10">
